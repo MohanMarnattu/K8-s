@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: canary
+  labels:
+    type: one
+spec:
+  selector: 
+    matchLabels:
+      type: one
+  template:
+    metadata:
+      labels:
+        type: one
+    spec:    
+      containers: 
+        - name: can
+          image: php-apache
+          ports:
+            - containerPort: 80
+          resources:
+            requests: 
+              cpu: "600m"
+            limits:    
+             cpu: "600m"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: canary
+  labels: 
+    type: one
+spec: 
+ ports:
+   - port: 80
+ selector:
+   type: canary
+...    
+      
+
+     
+
+
+

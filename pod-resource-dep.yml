@@ -1,0 +1,32 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: resource-dep1
+  labels: 
+    type: res
+    author: mohan
+spec: 
+  replicas: 2
+  selector: 
+    matchLabels:
+      type: res
+      author: mohan 
+  template: 
+    metadata:
+      name: nginx-1
+      labels:    
+        type: res
+        author: mohan
+    spec:  
+      containers:
+        - name: nginx-pod
+          image: nginx
+          resources: 
+            requests:
+              memory: "70Mi"
+              cpu: "500m"
+            limits:
+              memory: "75Mi"
+              cpu: "500m"
+...

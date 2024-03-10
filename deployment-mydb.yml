@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: mysql-dep
+  labels:
+    type: db
+    author: mohan
+spec: 
+  replicas: 2
+  template:
+    metadata:
+      name: mysql-pod
+      labels:
+        type: db
+        author: mohan   
+    spec:     
+      containers:
+        - name: mysql
+          image: mysql:5
+          env: 
+           - name: MYSQL_ROOT_PASSWORD
+             value: Mohan

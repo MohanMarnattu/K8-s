@@ -1,0 +1,23 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: volumes1
+  labels:
+    type: yml
+spec:
+  containers: 
+    - name: redis-pod
+      image: redis      
+      volumeMounts:
+       - name: mine
+         mountPath: /data/redis
+  volumes:
+    - name: mine
+      emptyDir: {}
+  tolerations:
+    - key: john1
+      operator: Equal
+      value: cena1
+      effect: NoSchedule    
+...

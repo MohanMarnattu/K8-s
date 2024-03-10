@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: nginx-d 
+  labels: 
+    type: demon
+spec: 
+  selector:
+    matchLabels:
+      type: demon
+  template: 
+    metadata: 
+      name: nginx-pod
+      labels:
+        type: demon
+    spec:
+      containers: 
+        - name: nginx1
+          image: nginx
+          ports: 
+            - containerPort: 80
+              hostPort: 8088
